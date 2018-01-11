@@ -8,5 +8,7 @@
   :main {{ns-name}}.core
   :aot [{{ns-name}}.core]
   :bin { :name "{{ns-name}}"
-         :preamble-script "boot/jar-preamble.sh" }
-  :plugins [[lein-bin "0.3.6-SNAPSHOT"]])
+         :custom-preamble-script "boot/jar-preamble.sh" }
+  :plugins [[lein-binplus "0.6.4-SNAPSHOT"]]
+  :profiles {:dev {:dependencies [[midje "1.9.1"]]
+                   :plugins [[lein-midje "3.2.1"]]}})

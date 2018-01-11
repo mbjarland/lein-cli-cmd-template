@@ -1,7 +1,6 @@
-(ns {{ns-name}}.core
+(ns {{ns-name}}.cli
     (:require [clojure.string :as string]
       [clojure.tools.cli :refer [parse-opts]])
-    (:import (java.net InetAddress))
     (:gen-class))
 
 (def cli-options
@@ -13,11 +12,10 @@
     :parse-fn #(Integer/parseInt %)
     :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
    ["-H" "--hostname HOST" "Remote host"
-    :default (InetAddress/getByName "localhost")
+    :default (str "localhost")
     ;; Specify a string to output in the default column in the options summary
     ;; if the default value's string representation is very ugly
-    :default-desc "localhost"
-    :parse-fn #(InetAddress/getByName %)]
+    :default-desc "localhost"]
    ;; If no required argument description is given, the option is assumed to
    ;; be a boolean option defaulting to nil
    [nil "--detach" "Detach from controlling process"]
@@ -32,7 +30,7 @@
 (defn usage [options-summary]
       (->> ["This is my program. There are many like it, but this one is mine."
             ""
-            "Usage: program-name [options] action"
+            "Usage: {{{name}}} [options] action"
             ""
             "Options:"
             options-summary
@@ -66,12 +64,3 @@
 (defn exit [status msg]
       (println msg)
       (System/exit status))
-
-(defn -main [& args]
-      (let [{:keys [action options exit-message ok?]} (validate-args args)]
-           (if exit-message
-             (exit (if ok? 0 1) exit-message)
-             (case action
-                   "start"  (println "starting server with: " options)
-                   "stop"   (println "stopping server with: " options)
-                   "status" (println "status   server with: " options)))))

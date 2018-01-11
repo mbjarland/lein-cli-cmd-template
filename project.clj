@@ -1,5 +1,5 @@
-(defproject lein-cli-cmd/lein-template "0.0.1"
-  :description "Created with lein-cli-cmd leiningen plugin"
+(defproject cli-cmd/lein-template "0.1.0"
+  :description "A leiningen template for creating command line executables in clojure"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
