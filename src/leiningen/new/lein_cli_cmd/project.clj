@@ -7,5 +7,6 @@
                  [org.clojure/tools.cli "0.3.5"]]
   :main {{ns-name}}.core
   :aot [{{ns-name}}.core]
-  :bin { :name "{{ns-name}}" }
+  :bin { :name "{{ns-name}}"
+         :preamble-script "boot/jar-preamble.sh" }
   :plugins [[lein-bin "0.3.6-SNAPSHOT"]])
