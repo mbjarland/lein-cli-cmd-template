@@ -1,8 +1,10 @@
 # lein-cli-cmd
 lein-cli-cmd is a leiningen plugin for creating "cli command" projects.
 
-# Installation 
-Check out this project, cd into the root and issue `lein install`
+# Goals 
+Remove all the boiler plate work in creating command line executables in clojure. You should run one command to create a best-of-breed skeleton project and then be left with just implementing the actual logic and defining the command line params. 
+
+This projet will be updated as we come up with new ways of optimizing this process. 
 
 # Prerequisites
 This project requires a thusfar unreleased version of the `lein-bin` project. Please install this manually by checking out: 
@@ -14,6 +16,16 @@ and executing:
 ```
 $> cd lein-bin
 $> lein install 
+```
+
+hopefully my [pull request](https://github.com/Raynes/lein-bin/pull/29) to the lein-bin project will be accepted some time soon, we can get a new version on clojars and this step will no longer be required. 
+
+# Installation 
+Check out this project, then: 
+
+```bash 
+$> cd lein-cli-cmd
+$> lein install
 ```
 
 
