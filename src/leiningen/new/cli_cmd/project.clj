@@ -9,6 +9,6 @@
   :aot [{{ns-name}}.core]
   :bin { :name "{{ns-name}}"
          :custom-preamble-script "boot/jar-preamble.sh" }
-  :plugins [[lein-binplus "0.6.4-SNAPSHOT"]]
-  :profiles {:dev {:dependencies [[midje "1.9.1"]]
+  :plugins [[lein-binplus "0.6.4"]]
+  :profiles {:dev {:dependencies [[midje "1.9.1" :exclusions [org.clojure/clojure]]]
                    :plugins [[lein-midje "3.2.1"]]}})
