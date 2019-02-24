@@ -116,12 +116,15 @@ The jar preamble script used is located in the `boot/jar-preamble.sh` file as de
 
 Once built, the java version used by the command can be modified via: 
 
-* if using drip - setting the `DRIP_JAVA_CMD` environment variable to point to a java executable 
-* if not using drip - by setting the `JAVA_CMD` environment variable to point to a java executable, or if that is not found, by setting the JAVA_HOME environment variable to point to a jre or jdk installation. 
+* if using drip - by setting the `DRIP_JAVA_CMD` environment variable to point to a java executable 
+* if not using drip: 
+   * by setting the `JAVA_CMD` environment variable to point to a java executable
+   * if `JAVA_CMD` is not set, by setting the `JAVA_HOME`environment variable to point to a jre or jdk installation. 
 * if not using drip and no `JAVA_CMD` or `JAVA_HOME` is found, the command will default to running whatever `java` executable can be found on the system path. 
 
-Please read the comment and code in the `boot/jar-preamble.sh` file for further details on this. 
+Where 'using drip' in the above means that drip can be located on the system path. Drip support is currently only built for non-windows environments. Pull requests for adding windows support to the `jar-preamble.sh` file are welcome. 
 
+Please read the comment and code in the `boot/jar-preamble.sh` file for further details on customizing the runtime behavior of the created commands. 
 
 ## License
 Copyright © 2019 Matias Bjarland
