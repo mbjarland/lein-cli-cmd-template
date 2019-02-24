@@ -51,9 +51,6 @@ Creating standalone executable: /home/mbjarland/projects/iteego.toolbox/projects
 > re-aligning zip offsets...
 
 # and finally execute the newly generated executable command
-# this requires that the 'java' command be on the command line 
-# and additionally, if the 'drip' command is on the command line
-# the execution will be much faster
 $> target/my-cmd 
 This is my program. There are many like it, but this one is mine.
 
@@ -76,8 +73,10 @@ Please refer to the manual page for more information.
 $> 
 ```
 
+where the command line help printed out by the skeleton project is only there as an example and a starting point. 
+
 # Structure 
-Creating a new cli project using this template will give you the following directory structure: 
+Creating a new cli project using this template will give you the following project directory structure: 
 
 ```
 .
@@ -98,22 +97,33 @@ Creating a new cli project using this template will give you the following direc
 where the command line argument parsing logic and definition has been separated into its own namespace leaving core.clj relatively clean. 
 
 # Dependencies 
-The created project uses midje as a testing framework. This is a matter of taste and switching it out with something else is as easy as editing the generated project.clj 
+The created project uses midje as a testing framework. This is a matter of taste and switching it out with something else is as easy as editing the generated project.clj. 
+
+The rest of the dependencies look as follows: 
+
+```
+ [clojure-complete "0.2.4" :exclusions [[org.clojure/clojure]]]
+ [org.clojure/clojure "1.10.0"]
+   [org.clojure/core.specs.alpha "0.2.44"]
+   [org.clojure/spec.alpha "0.2.176"]
+ [org.clojure/tools.cli "0.4.1"]
+ [org.clojure/tools.nrepl "0.2.12" :exclusions [[org.clojure/clojure]]]
+
+```
 
 # Customization 
 The jar preamble script used is located in the `boot/jar-preamble.sh` file as depicted in the structure listing above. It can be modified and re-running `lein bin` will generate a new executable jar file with the modified preamble. 
 
-Once built, the java version used by the command line script can be modified via: 
+Once built, the java version used by the command can be modified via: 
 
-* if using drip - setting the DRIP_JAVA_CMD environment variable to point to a java executable 
-* if not using drip - by setting the JAVA_CMD environment variable to point to a java executable, or if that is not found, by setting the JAVA_HOME environment variable to point to a jre or jdk installation. 
-* if not using drip and no JAVA_CMD or JAVA_HOME is found, the command will default to running whatever `java` executable can be found on the system path. 
+* if using drip - setting the `DRIP_JAVA_CMD` environment variable to point to a java executable 
+* if not using drip - by setting the `JAVA_CMD` environment variable to point to a java executable, or if that is not found, by setting the JAVA_HOME environment variable to point to a jre or jdk installation. 
+* if not using drip and no `JAVA_CMD` or `JAVA_HOME` is found, the command will default to running whatever `java` executable can be found on the system path. 
 
 Please read the comment and code in the `boot/jar-preamble.sh` file for further details on this. 
 
 
 ## License
-
 Copyright © 2019 Matias Bjarland
 
 Distributed under the Eclipse Public License either version 1.0 or (at
